@@ -5,13 +5,16 @@ import java.io.InputStreamReader;
 
 public class Lanzador {
 
-    private static final String CP = "UD1.jar";     // se ajustará para ejecución por JAR
-    private static final String MAIN_CLASS = "UD1.ej3.Cadenas_modif";
+    // Nombre del JAR real que has construido con IntelliJ
+    private static final String CP = "Comunicacion_Entre_Procesos.jar";
+
+    // Clase que se ejecutará como proceso hijo
+    private static final String MAIN_CLASS = "ej3.Cadenas_modif";
 
     public static void main(String[] args) {
 
         if (args.length != 2) {
-            System.err.println("Uso: java UD1.ej3.Lanzador <num_instancias> <num_cadenas>");
+            System.err.println("Uso: java ej3.Lanzador <num_instancias> <num_cadenas>");
             return;
         }
 
@@ -21,7 +24,10 @@ public class Lanzador {
         for (int i = 1; i <= numInstancias; i++) {
             try {
                 ProcessBuilder pb = new ProcessBuilder(
-                        "java", "-cp", CP, MAIN_CLASS,
+                        "java",
+                        "-cp",
+                        CP,
+                        MAIN_CLASS,
                         String.valueOf(i),
                         String.valueOf(numCadenas)
                 );
